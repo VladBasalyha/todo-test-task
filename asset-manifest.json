@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/VladBasalyha/todo-test-task.git/static/css/main.5ff83e68.css",
+    "main.js": "/VladBasalyha/todo-test-task.git/static/js/main.15e7d52a.js",
+    "static/js/787.28cb0dcd.chunk.js": "/VladBasalyha/todo-test-task.git/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/VladBasalyha/todo-test-task.git/index.html",
+    "main.5ff83e68.css.map": "/VladBasalyha/todo-test-task.git/static/css/main.5ff83e68.css.map",
+    "main.15e7d52a.js.map": "/VladBasalyha/todo-test-task.git/static/js/main.15e7d52a.js.map",
+    "787.28cb0dcd.chunk.js.map": "/VladBasalyha/todo-test-task.git/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5ff83e68.css",
+    "static/js/main.15e7d52a.js"
+  ]
+}
