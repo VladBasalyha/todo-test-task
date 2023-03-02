@@ -1,5 +1,4 @@
 import {
-	Checkbox,
 	Table,
 	TableBody,
 	TableCell,
@@ -29,9 +28,9 @@ export const ListOfTodo = () => {
 
 	const changeModalStatus = (e) => {
 		const { type } = e.target;
-
+		const { dataset } = e.currentTarget;
 		todos.find((todo) => {
-			if (todo.id == e.currentTarget.dataset.id) {
+			if (todo.id == dataset.id) {
 				setModalDescription(todo.description);
 				setModalTitle(todo.title);
 				setTodoId(todo.id);
