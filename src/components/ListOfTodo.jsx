@@ -93,7 +93,11 @@ export const ListOfTodo = () => {
 				<TableBody>
 					{todos.map((todo) => {
 						return (
-							<TableRow data-id={`${todo.id}`} onClick={changeModalStatus}>
+							<TableRow
+								key={todo.id}
+								data-id={`${todo.id}`}
+								onClick={changeModalStatus}
+							>
 								<TableCell>{todo.id}</TableCell>
 								<TableCell>{todo.description}</TableCell>
 								<TableCell>{todo.title}</TableCell>
