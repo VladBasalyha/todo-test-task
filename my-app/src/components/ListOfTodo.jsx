@@ -6,35 +6,26 @@ import {
 	TableHead,
 	TableRow,
 } from "@mui/material";
+import { flexbox } from "@mui/system";
 import { useState } from "react";
 import { FormTodo } from "./FormTodo";
 import { ModalTodo } from "./ModalTodo";
 export const ListOfTodo = () => {
-	const [todos, setTodo] = useState([
-		{
-			id: 1,
-			description: "fdsafdsafdsafdsafdas",
-			title: "gfsdafdasfdsaf",
-			status: false,
-		},
-		{
-			id: 2,
-			description: "chel",
-			title: "alo",
-			status: false,
-		},
-	]);
+	const [todos, setTodo] = useState([]);
 
 	const [modalDescription, setModalDescription] = useState("");
 
 	const [modalTitle, setModalTitle] = useState("");
 
+	const [isModalCheckboxChecked, setCheckboxState] = useState();
+
 	const [isModalOpen, setModalStatus] = useState(false);
 
+	const [todoId, setTodoId] = useState();
 	const addingTodo = (newTodo) =>
 		setTodo((prevstate) => [...prevstate, newTodo]);
 
-	const keys = Object.keys(...todos);
+	const keys = ["id", "title", "description", "status"];
 
 	const changeModalStatus = (e) => {
 		const { type } = e.target;
@@ -43,6 +34,8 @@ export const ListOfTodo = () => {
 			if (todo.id == e.currentTarget.dataset.id) {
 				setModalDescription(todo.description);
 				setModalTitle(todo.title);
+				setTodoId(todo.id);
+				setCheckboxState(todo.status);
 			}
 		});
 
@@ -52,12 +45,41 @@ export const ListOfTodo = () => {
 		setModalStatus((prev) => !prev);
 	};
 
+	const toggleTodoCompleted = (e) => {
+		const { dataset } = e.target;
+
+		let mapped = todos.map((todo) => {
+			return todo.id === Number(dataset.name)
+				? { ...todo, status: !todo.status }
+				: { ...todo };
+		});
+		setTodo(mapped);
+	};
 	return (
 		<>
 			{isModalOpen && (
 				<ModalTodo onModalClose={changeModalStatus}>
-					<p>{modalDescription}</p>
+					<h2 style={{ display: flexbox }}>{modalDescription}</h2>
+					<p>Description:</p>
 					<p>{modalTitle}</p>
+					{todos.map((todo) => {
+						{
+							return (
+								todo.id == todoId && (
+									<label htmlFor="status">
+										status
+										<input
+											checked={todo.status}
+											onChange={toggleTodoCompleted}
+											data-name={todo.id}
+											type="checkbox"
+											id="status"
+										></input>
+									</label>
+								)
+							);
+						}
+					})}
 				</ModalTodo>
 			)}
 			<FormTodo addingTodo={addingTodo}></FormTodo>
@@ -77,7 +99,12 @@ export const ListOfTodo = () => {
 								<TableCell>{todo.description}</TableCell>
 								<TableCell>{todo.title}</TableCell>
 								<TableCell>
-									<Checkbox checked={todo.status}></Checkbox>
+									<input
+										checked={todo.status}
+										onChange={toggleTodoCompleted}
+										data-name={todo.id}
+										type="checkbox"
+									></input>
 								</TableCell>
 							</TableRow>
 						);
